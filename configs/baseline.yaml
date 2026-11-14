@@ -1,0 +1,12 @@
+group_id: SOLO-2A202603149
+owner: NguyenCongQuy
+track_config: tracks/t02.yaml
+track: t02
+input: fixtures/t02_raw_qc
+output: out/
+seed: 42
+offline: true
+strict_provenance: true
+params:
+  budget: 20
+  baseline: true

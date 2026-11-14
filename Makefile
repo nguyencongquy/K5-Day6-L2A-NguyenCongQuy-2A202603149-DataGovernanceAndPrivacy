@@ -7,7 +7,7 @@ PRED = $(shell $(PY) -c "from src.metrics.tracks import get_track;print(get_trac
 .PHONY: help setup preflight test fixtures verify baseline run eval-baseline eval-poc compare real-data tag-demo tag-final
 
 help:
-	@echo "make setup | preflight | test | verify | baseline TRACK=t11 | run TRACK=t02 | eval-baseline | eval-poc | compare"
+	@echo "make setup | preflight | test | verify | baseline TRACK=t02 | run TRACK=t02 | eval-baseline | eval-poc | compare"
 
 setup:
 	python3 -m venv .venv && $(PY) -m pip install -q --upgrade pip && $(PY) -m pip install -q -r requirements.txt
@@ -25,8 +25,8 @@ fixtures:            ## instructor only: regenerate fixtures (needs the private 
 	@test -f tools/make_fixtures.py || { echo "tools/make_fixtures.py is instructor-only (private overlay not installed)"; exit 1; }
 	$(PY) -m tools.make_fixtures
 
-baseline:            ## random baseline wiring example (t01, t02, t11, t13)
-	$(PY) -m src.main --track $(TRACK) --pipeline src.examples.random_baseline --output $(OUT)/baseline --run-name baseline --offline --seed 42
+baseline:            ## T02 submission: global Laplacian baseline
+	$(PY) -m src.main --track $(TRACK) --config configs/baseline.yaml --output $(OUT)/baseline --run-name baseline --offline --seed 42
 
 run:                 ## your PoC (src/pipeline.py)
 	$(PY) -m src.main --config configs/lab.yaml --track $(TRACK) --output $(OUT)/poc --run-name poc --offline --seed 42
