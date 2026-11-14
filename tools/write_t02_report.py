@@ -130,6 +130,8 @@ Ngày đọc 2026-11-14.
 - [Evaluator chuẩn](../src/metrics/tracks.py) và [review helpers](../src/common/review.py): tái sử dụng định nghĩa metric và audit để tránh đổi cách chấm.
 '''
     (R/'group_report.md').write_text(report)
+    for csv_path in R.glob('*.csv'):
+        csv_path.write_text(csv_path.read_text())
     print('Report refreshed from actual evidence; owner confirmed:',own.get('confirmed',False))
 
 if __name__=='__main__':main()
