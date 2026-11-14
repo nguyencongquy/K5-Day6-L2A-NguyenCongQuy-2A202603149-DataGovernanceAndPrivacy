@@ -6,6 +6,10 @@ TASK_PY=${TASK_PY:-.venv/bin/python}
 "$TASK_PY" -m tools.verify_manifests > reports/manifest_check.txt
 "$TASK_PY" -m src.main --config configs/baseline.yaml --output out/baseline --run-name baseline --offline --seed 42
 "$TASK_PY" -m src.main --config configs/lab.yaml --output out/poc --run-name poc --offline --seed 42
+if [ ! -f out/poc/review_queue_reviewed.csv ] && [ -f reports/review_queue_reviewed.csv ]; then
+    cp reports/review_queue_reviewed.csv out/poc/review_queue_reviewed.csv
+    "$TASK_PY" -m src.main --config configs/lab.yaml --output out/poc --run-name poc --offline --seed 42
+fi
 "$TASK_PY" -m src.main --input data/ood_synthetic --output out/ood --offline --seed 42
 "$TASK_PY" -m tools.evaluate_internal_t02
 "$TASK_PY" -m tools.analyze_t02_requirements

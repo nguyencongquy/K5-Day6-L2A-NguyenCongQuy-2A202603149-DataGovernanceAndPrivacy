@@ -102,12 +102,20 @@ def run(ctx):
         final = apply_overrides(final, reviewed, 'image_id', 'pred_action', ctx.audit)
         for r in reviewed.itertuples(index=False):
             ctx.audit.log(actor=r.reviewer, action='review:'+r.reviewer_decision, item_id=r.item_id, reason=r.review_note)
+    final['review_status'] = 'UNREVIEWED'
+    final['final_action'] = 'HOLD'
+    for r in reviewed.itertuples(index=False):
+        mask = final.image_id.astype(str).eq(r.item_id)
+        final.loc[mask, 'review_status'] = r.reviewer_decision.upper()
+        if r.reviewer_decision in {'approve', 'edit', 'reject'}:
+            final.loc[mask, 'final_action'] = final.loc[mask, 'pred_action']
     final.to_csv(ctx.out('ranked_review.csv'), index=False)
     complete = len(reviewed)==len(q) and len(q)>0 and reviewed.reviewer_decision.isin(['approve','edit','reject']).all()
-    ctx.stats.update(n_items=len(raw), n_eval=len(pool), n_reviewed=len(reviewed), budget=len(q))
+    n_escalated = int(reviewed.reviewer_decision.eq('escalate').sum()) if len(reviewed) else 0
+    ctx.stats.update(n_items=len(raw), n_eval=len(pool), n_reviewed=len(reviewed), n_escalated=n_escalated, budget=len(q))
     ctx.audit.log(actor='pipeline', action='triage', after=ctx.stats, reason='Fixed policy; no hidden labels')
     write_decision(Decision(status='GO' if complete else 'HOLD',
-        reason_code='REVIEW_COMPLETE' if complete else 'HUMAN_REVIEW_REQUIRED',
-        reason='Release triage results only after the whole queue is reviewed; GO does not certify privacy compliance.',
+        reason_code='REVIEW_COMPLETE' if complete else ('REVIEW_ESCALATED' if n_escalated else 'HUMAN_REVIEW_REQUIRED'),
+        reason=(f'{n_escalated} reviewed cases require escalation; no release approval for these cases.' if n_escalated else 'Release triage results only after the whole queue is reviewed; GO does not certify privacy compliance.'),
         owner=ctx.config['owner'], scope='t02-triage-output', evidence=['ranked_review.csv','review_queue.csv','audit_log.jsonl']),
         ctx.out('decision.json'),ctx.out('decision_log.csv'))
