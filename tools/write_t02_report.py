@@ -2,19 +2,20 @@
 from pathlib import Path
 import json, shutil
 import pandas as pd
-from src.common.io import write_json
+from src.common.io import git_sha
 
 
 def main():
     reports=Path('reports')
     info=json.loads(Path('out/poc/run_info.json').read_text())
     protocol=json.loads((reports/'internal_protocol.json').read_text())
+    source_commit=git_sha()
     tests=(reports/'test_results.txt').read_text().strip().splitlines()[-1]
     compare=(reports/'table1_baseline_vs_poc.md').read_text()
     ablation=(reports/'table2_ablation.md').read_text()
     for f in ['review_queue.csv','decision_log.csv','decision.json','audit_log.jsonl','run_info.json','raw_predictions.csv','ranked_review.csv','contact_sheet.html']:
         shutil.copyfile(Path('out/poc')/f,reports/f)
-    pd.DataFrame([dict(member='NguyenCongQuy',git_author_name='',git_email='',role='Solo: integration, algorithm, QA, report',modules_files='src/pipeline.py;tools/evaluate_internal_t02.py;tests/test_t02_submission.py',commit_shas='',evidence_note='Working tree delivered locally; identity and submission commit pending',presenter='pending')]).to_csv(reports/'team_contributions.csv',index=False)
+    pd.DataFrame([dict(member='NguyenCongQuy',git_author_name='NguyenCongQuy',git_email='26ai.quync@vinuni.edu.vn',role='Solo: integration, algorithm, QA, report',modules_files='src/pipeline.py;tools/evaluate_internal_t02.py;tests/test_t02_submission.py',commit_shas=source_commit,evidence_note='Substantive implementation commit; see git show and tests',presenter='pending')]).to_csv(reports/'team_contributions.csv',index=False)
     report=f'''# Day06 · T02 — Raw QC Triage
 
 ## 00 · Thông tin
@@ -23,12 +24,12 @@ def main():
 - Hình thức: cá nhân; mã làm việc nội bộ `SOLO-2A202603149`, cần giảng viên xác nhận cách nộp cá nhân.
 - Repo: https://github.com/nguyencongquy/K5-Day6-L2A-NguyenCongQuy-2A202603149-DataGovernanceAndPrivacy
 - Phạm vi: pipeline CPU offline, baseline, PoC, benchmark nội bộ, ablation, tests và giao diện review.
-- Trạng thái: **HOLD — còn chờ người sở hữu review 20 ảnh, đánh giá GT ẩn và nộp Git**. Không tuyên bố hoàn thành phần review hay hidden evaluation.
+- Trạng thái: **HOLD — còn chờ người sở hữu xác nhận review 20 ảnh và đánh giá GT ẩn**. Không tuyên bố hoàn thành phần review hay hidden evaluation.
 - Chưa tạo tag `demo-180m`/`final-24h`; không có bằng chứng thời hạn lớp để xác nhận bonus theo thời gian.
 
 ## 01 · Vấn đề và quyết định
 
-Người kiểm dữ liệu có ngân sách hữu hạn. Nếu chỉ dựa vào độ nét toàn ảnh, ảnh đêm còn hữu ích có thể bị loại, trong khi vùng nhỏ bị lóa có thể bị bỏ sót. Mục tiêu là ưu tiên 20 ảnh nghi lỗi để người kiểm đưa ra KEEP/RECAPTURE, thay vì tự động xóa ảnh.
+Người kiểm dữ liệu có ngân sách hữu hạn. Nếu chỉ dựa vào độ nét toàn ảnh, ảnh đêm còn hữu ích có thể bị loại, trong khi vùng nhỏ bị lóa có thể bị bỏ sót. Mục tiêu là ưu tiên 20 ảnh nghi lỗi để người kiểm đưa ra KEEP/RECAPTURE hoặc chuyển cấp khi chưa rõ, thay vì tự động xóa ảnh.
 
 Input là ảnh, metadata và manifest. Output gồm `ranked_review.csv`, `review_queue.csv`, contact sheet, dự đoán gốc, audit log và decision log. KEEP/RECAPTURE là gợi ý; không thay đổi hay xóa file nguồn. Cổng tổng giữ HOLD khi còn thiếu review, skip/escalate, review không tên hoặc dữ liệu không hợp lệ. GO chỉ có nghĩa kết quả triage đã được review; không chứng nhận dữ liệu tuân thủ pháp luật hay mọi ảnh đều đạt chất lượng.
 
@@ -77,7 +78,7 @@ Failure 1: compression có thể giữ cạnh mạnh hoặc trùng cạnh cấu 
 
 Failure 2: dùng max score khiến glare và blur chiếm toàn budget; các ảnh dark bị bỏ sau điểm hòa/budget. Không được kết luận dark không có lỗi. Có thể nghiên cứu quota theo slice, nhưng phải so với baseline trên cùng pool và budget ở thí nghiệm mới.
 
-Failure 3: vùng trắng hợp lệ (tuyết, bảng trắng, bầu trời) có thể bị gọi glare; ảnh đêm có tín hiệu hữu ích có thể bị báo dark. Đây là rủi ro thiết kế chưa có bộ natural hard-negative đủ rộng để định lượng.
+Failure 3: vùng trắng hợp lệ (tuyết, bảng trắng, bầu trời) có thể bị gọi glare; ảnh đêm có tín hiệu hữu ích có thể bị báo dark. Đây là rủi ro thiết kế chưa có bộ natural hard-negative đủ rộng để định lượng. Đối chiếu trực quan 20 ảnh fixture cũng xác nhận artifact nén ở một số ảnh được gợi ý KEEP; xem `visual_review.md`. Đây là phát hiện cần xác minh theo policy, không phải nhãn GT hoặc điểm lỗi chính thức.
 
 Ablation bỏ glare, giữ nguyên các thành phần khác:
 
@@ -89,7 +90,7 @@ Ablation này là kiểm tra nội bộ, không phải hidden test. Primary khô
 
 `reports/contact_sheet.html` chứa 20 ảnh ưu tiên, score, loại lỗi và gợi ý hành động. Trạng thái hiện tại: **0 review của học viên đã nhập**. Không dùng các reviewer giả từ unit test làm bằng chứng review thật; các test chạy trong thư mục tạm.
 
-Reviewer nhập tên, chọn approve/edit/reject/escalate/skip và ghi lý do. Với edit/reject phải nhập KEEP hoặc RECAPTURE. Export CSV, chép vào `out/poc/review_queue_reviewed.csv`, chạy lại PoC. Pipeline kiểm ID thuộc queue, không trùng, action hợp lệ; giữ raw và final riêng, ghi JSONL append-only. Không thay đổi score bằng override hành động để tránh làm sai metric ranking.
+Reviewer nhập tên, chọn approve/edit/reject/escalate/skip và ghi lý do. Với edit/reject phải nhập KEEP hoặc RECAPTURE. Export CSV, chép vào `out/poc/review_queue_reviewed.csv`, chạy lại PoC. Pipeline kiểm ID thuộc queue, không trùng, action hợp lệ; giữ raw và final riêng, ghi JSONL append-only. Không thay đổi score bằng override hành động để tránh làm sai metric ranking. File review cũ có score/action/evidence khác queue hiện tại bị từ chối. File `visual_review_recommendations.csv` ghi 10 đề nghị RECAPTURE, 8 ESCALATE, 2 KEEP; chưa dùng làm chữ ký chủ sở hữu hoặc gold labels.
 
 ## 08 · Tái lập và tests
 
@@ -109,7 +110,7 @@ make run TRACK=t02
 
 Tests: **{tests}**. 39 skipped là tests cần overlay GT; không tính là đã vượt qua kiểm tra hidden. Test riêng kiểm độ nét sau blur, ảnh quá nhỏ, output offline tái lập, HOLD khi chưa review, override/audit hợp lệ và từ chối review không tên. Test starter chờ NotImplemented đã đổi sang kiểm pipeline triển khai trả exit 0; không xóa kiểm tra offline/GT hoặc hạ điều kiện evaluator.
 
-Máy: {info['machine']}. Runtime fixture PoC: {info['runtime_seconds']} giây cho 96 ảnh trong lần đo; xem run_info. Runtime benchmark trong bảng là bộ khác, không trộn hai phép đo. Môi trường hiện tại dùng venv với system-site-packages; `requirements.txt` cho phép tạo venv mới, `requirements-lock.txt` ghi phiên bản các dependency thực dùng. Chưa chứng nhận chạy lại trên máy khác.
+Máy: {info['machine']}. Runtime fixture PoC: {info['runtime_seconds']} giây cho 96 ảnh trong lần đo; xem run_info. Runtime benchmark trong bảng là bộ khác, không trộn hai phép đo. Môi trường triển khai ban đầu dùng venv với system-site-packages; `requirements-lock.txt` ghi phiên bản dependency. Kết quả kiểm tra venv tách biệt, nếu đã chạy xong, nằm trong `clean_environment_check.json`; không suy ra đã kiểm chứng trên máy khác.
 
 ## 09 · Giới hạn và quyền riêng tư
 
@@ -117,9 +118,9 @@ Không dùng pretrained model hoặc API; demo chạy offline. Chỉ dùng fixtu
 
 ## 10 · Đóng góp và trạng thái nộp
 
-Làm cá nhân: Nguyễn Công Quý chịu trách nhiệm integration, thiết kế, QA và báo cáo. `team_contributions.csv` hiện ghi phần việc nhưng chưa có commit SHA/identity được xác nhận. Chưa push hoặc tạo tag. Không có thành viên hay hoạt động showcase/debate giả.
+Làm cá nhân: Nguyễn Công Quý chịu trách nhiệm integration, thiết kế, QA và báo cáo. `team_contributions.csv` ghi phần việc và Git identity đã dùng ở bài Day05. Commit nguồn cho lần chạy này: `{source_commit}`; run_info ghi SHA tương ứng. Trạng thái push xác nhận bằng Git remote, không dùng tag phút 180 khi không có bằng chứng. Không có thành viên hay hoạt động showcase/debate giả.
 
-Còn trước khi nộp: review 20 ảnh thật trong queue, xuất CSV, chạy lại; xác nhận yêu cầu nộp cá nhân; hoàn thiện Git identity/commit; gửi link repo/tag trên LMS. GT ẩn và showcase do quy trình lớp quyết định. Phần mềm chạy được không đồng nghĩa toàn bộ rubric đã hoàn thành.
+Còn trước khi nộp: xác nhận review 20 ảnh synthetic trong queue, xuất CSV, chạy lại; xác nhận yêu cầu nộp cá nhân; gửi link repo/report trên LMS sau khi kiểm tra trạng thái cuối. GT ẩn và showcase do quy trình lớp quyết định. Phần mềm chạy được không đồng nghĩa toàn bộ rubric đã hoàn thành.
 
 ## 11 · Tài liệu
 

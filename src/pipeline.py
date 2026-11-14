@@ -43,6 +43,12 @@ def run(ctx):
         raise ValueError('This submission implements T02 only')
     if not isinstance(ctx.config.get('owner'), str) or not ctx.config['owner'].strip():
         raise ValueError('owner is required')
+    # Invalidate any prior GO before loading new inputs or reviewer decisions.
+    # A failed rerun must never leave a stale release approval on disk.
+    write_decision(Decision(status='HOLD', reason_code='RUN_IN_PROGRESS',
+        reason='Current run has not completed validation and review.',
+        owner=ctx.config['owner'], scope='t02-triage-output'),
+        ctx.out('decision.json'), ctx.out('decision_log.csv'))
     problems = verify_manifest(ctx.input_dir/'manifest.csv')
     if problems:
         raise ValueError(f'provenance check failed: {problems[:3]}')

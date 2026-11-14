@@ -68,3 +68,17 @@ def test_escalation_keeps_hold(tmp_path):
     q.to_csv(tmp_path/'review_queue_reviewed.csv',index=False)
     assert main.main(['--offline','--output',str(tmp_path)])==0
     assert json.loads((tmp_path/'decision.json').read_text())['status']=='HOLD'
+
+
+def test_failed_rerun_invalidates_previous_go(tmp_path):
+    import pandas as pd
+    assert main.main(['--offline','--output',str(tmp_path)])==0
+    q=pd.read_csv(tmp_path/'review_queue.csv').fillna('')
+    q['reviewer']='test-reviewer';q['reviewer_decision']='approve'
+    q.to_csv(tmp_path/'review_queue_reviewed.csv',index=False)
+    assert main.main(['--offline','--output',str(tmp_path)])==0
+    assert json.loads((tmp_path/'decision.json').read_text())['status']=='GO'
+    q.loc[0,'score']=-100
+    q.to_csv(tmp_path/'review_queue_reviewed.csv',index=False)
+    assert main.main(['--offline','--output',str(tmp_path)])==2
+    assert json.loads((tmp_path/'decision.json').read_text())['status']=='HOLD'
