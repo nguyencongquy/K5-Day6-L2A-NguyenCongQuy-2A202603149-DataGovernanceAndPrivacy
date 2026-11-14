@@ -1,0 +1,13 @@
+file_id,path,source,license,split,group_id,sha256
+images,images.csv,Procedural inspection-board scenes; tools/prepare_ood_t02.py; independent of fixture,CC0-1.0,ood_stress,synthetic_OOD,944d5e7715446c0cf3e946f69741877fc7e38dbe92f67e4ee5ffffdd0760d6c8
+ood01,images/ood01.png,Procedural inspection-board scenes; tools/prepare_ood_t02.py; independent of fixture,CC0-1.0,ood_stress,synthetic_OOD,16ead2a828139b612b2c584c84323bb31c03d783b76d84c77a5c5d9f87e00424
+ood02,images/ood02.png,Procedural inspection-board scenes; tools/prepare_ood_t02.py; independent of fixture,CC0-1.0,ood_stress,synthetic_OOD,98053c61a5238f51cd2ec6d804ffbccab05c9a0111f2f27b9368993363546d9e
+ood03,images/ood03.png,Procedural inspection-board scenes; tools/prepare_ood_t02.py; independent of fixture,CC0-1.0,ood_stress,synthetic_OOD,08ccd733b3f6a80baa9c7b9ac42b99d56f1972d3fc8b380ef13d3b7d7de3c198
+ood04,images/ood04.png,Procedural inspection-board scenes; tools/prepare_ood_t02.py; independent of fixture,CC0-1.0,ood_stress,synthetic_OOD,582cc1fb89eafc78cd4a08919db0e57acdc6ba5d5444e41d519d123ed365f29f
+ood05,images/ood05.png,Procedural inspection-board scenes; tools/prepare_ood_t02.py; independent of fixture,CC0-1.0,ood_stress,synthetic_OOD,9bedfb3d3b45e58b381bd3731c5f986ff8d69bc75718e5872acbb8914bf9c178
+ood06,images/ood06.png,Procedural inspection-board scenes; tools/prepare_ood_t02.py; independent of fixture,CC0-1.0,ood_stress,synthetic_OOD,a6901cb09e90a21a8be11c1f26f785dd8626b0471398aa31b2e3a663b611e5af
+ood07,images/ood07.png,Procedural inspection-board scenes; tools/prepare_ood_t02.py; independent of fixture,CC0-1.0,ood_stress,synthetic_OOD,fd4fc16c6c78e82431538b2b8ccc602881ecd2a0b1b2b4266e2c44c3e3eec008
+ood08,images/ood08.png,Procedural inspection-board scenes; tools/prepare_ood_t02.py; independent of fixture,CC0-1.0,ood_stress,synthetic_OOD,7abc75af4147f426bbbf6e04d4f9088042982166dec2cf758e4b3df88cc61d95
+ood09,images/ood09.png,Procedural inspection-board scenes; tools/prepare_ood_t02.py; independent of fixture,CC0-1.0,ood_stress,synthetic_OOD,b998e2cf90bd7a86f49a1806f746e723565be78eeccbc5c77bc93c34405b353b
+ood10,images/ood10.png,Procedural inspection-board scenes; tools/prepare_ood_t02.py; independent of fixture,CC0-1.0,ood_stress,synthetic_OOD,45389a3f5cbe0678a969995eb1594842495b035098138eeb6d6a2aa1f1c7626b
+reference_actions,reference_actions.csv,Procedural inspection-board scenes; tools/prepare_ood_t02.py; independent of fixture,CC0-1.0,ood_stress,synthetic_OOD,9f1d51f31054b1dac0a652d258b7a8259c740ec060da13936384fd6bd1043d50

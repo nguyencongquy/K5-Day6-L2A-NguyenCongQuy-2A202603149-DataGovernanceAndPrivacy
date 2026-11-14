@@ -1,0 +1,11 @@
+image_id,path,camera_id,light,split
+ood01,images/ood01.png,cam_OOD_0,day,eval
+ood02,images/ood02.png,cam_OOD_1,day,eval
+ood03,images/ood03.png,cam_OOD_0,night,eval
+ood04,images/ood04.png,cam_OOD_1,night,eval
+ood05,images/ood05.png,cam_OOD_0,day,eval
+ood06,images/ood06.png,cam_OOD_1,day,eval
+ood07,images/ood07.png,cam_OOD_0,day,eval
+ood08,images/ood08.png,cam_OOD_1,dusk,eval
+ood09,images/ood09.png,cam_OOD_0,day,eval
+ood10,images/ood10.png,cam_OOD_1,dusk,eval

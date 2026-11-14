@@ -1,0 +1,11 @@
+image_id,transform,reference_action,reference_basis,width,height,seed
+ood01,none,KEEP,"predeclared engineering expectation, not human gold",480,270,700
+ood02,soft_optics,KEEP,"predeclared engineering expectation, not human gold",480,270,701
+ood03,none,KEEP,"predeclared engineering expectation, not human gold",512,288,702
+ood04,underexpose,RECAPTURE,"predeclared engineering expectation, not human gold",512,288,703
+ood05,local_glare,RECAPTURE,"predeclared engineering expectation, not human gold",640,360,704
+ood06,texture,KEEP,"predeclared engineering expectation, not human gold",640,360,705
+ood07,jpeg3,RECAPTURE,"predeclared engineering expectation, not human gold",480,270,706
+ood08,smooth,KEEP,"predeclared engineering expectation, not human gold",360,240,707
+ood09,blur4,RECAPTURE,"predeclared engineering expectation, not human gold",480,270,708
+ood10,blur6,RECAPTURE,"predeclared engineering expectation, not human gold",600,240,709
