@@ -92,7 +92,7 @@ OOD được đo sau đóng băng, không tune lại: **{ood['agreement_count']}
 
 Đối chiếu 20 ảnh ở `visual_review.md`: 10 đề nghị RECAPTURE, 2 KEEP, 8 ESCALATE cần policy mức độ hữu ích/chi tiết mục tiêu. Không dùng reviewer giả của unit test làm bằng chứng review thật. Owner xác nhận được ghi ở `owner_review.json` khi có, cùng CSV đã review; nội dung này không được tự sinh khi chạy lại benchmark.
 
-Reviewer ghi approve/edit/reject/escalate/skip và lý do; edit/reject phải có KEEP/RECAPTURE. CSV phải thuộc queue hiện tại, ID không trùng, score/action/evidence trùng snapshot. Raw và final riêng; audit JSONL append-only, decision log có owner/reason. HOLD là kết quả hợp lệ khi còn ca chưa rõ, không phải lý do để sửa score cho đẹp.
+Reviewer ghi approve/edit/reject/escalate/skip và lý do; edit/reject phải có KEEP/RECAPTURE. CSV phải thuộc queue hiện tại, ID không trùng, score/action/evidence trùng snapshot. Raw và final riêng; audit JSONL append-only, decision log có owner/reason. `pred_action` là gợi ý mô hình (hoặc override đã chấp thuận); `review_status` và `final_action` phân biệt quyết định cuối. Ảnh ESCALATE và ảnh ngoài queue chưa review giữ final_action=HOLD, không được hiểu KEEP dự đoán là cho phép release. HOLD là kết quả hợp lệ khi còn ca chưa rõ, không phải lý do để sửa score cho đẹp.
 
 ## 08 · Tái lập và kiểm thử
 

@@ -1,5 +1,6 @@
 """Persist image-specific technical review recommendations; NOT owner sign-off or hidden GT."""
 from pathlib import Path
+import json
 import pandas as pd
 
 # Observations made by inspecting the 20 queued images at source size,
@@ -30,15 +31,17 @@ FINDINGS = {
 
 def main():
     q=pd.read_csv('reports/review_queue.csv').fillna('')
+    owner_path=Path('reports/owner_review.json')
+    confirmed=owner_path.exists() and json.loads(owner_path.read_text()).get('confirmed',False)
     rows=[]
     for r in q.itertuples(index=False):
         action,note=FINDINGS[r.item_id]
         rows.append(dict(item_id=r.item_id,pipeline_action=r.suggested_action,
             proposed_action=action,observation=note,evidence_path=r.evidence_path,
-            status='OWNER_CONFIRMATION_PENDING'))
+            status=('OWNER_CONFIRMED_ESCALATED' if action=='ESCALATE' else 'OWNER_CONFIRMED') if confirmed else 'OWNER_CONFIRMATION_PENDING'))
     pd.DataFrame(rows).to_csv('reports/visual_review_recommendations.csv',index=False)
     lines=['# T02 — đối chiếu trực quan 20 ảnh',
-        '', 'Khuyến nghị kỹ thuật sau đối chiếu ảnh. Không phải GT giảng viên, không thay chữ ký reviewer của học viên. Không đổi scoring policy sau khi xem eval.',
+        '', ('Chủ sở hữu đã xác nhận 10 RECAPTURE, 2 KEEP, 8 ESCALATE; xem owner_review.json và CSV đã review. Tám ca ESCALATE tiếp tục HOLD. Không phải GT giảng viên; scoring policy không đổi sau khi xem eval.' if confirmed else 'Khuyến nghị kỹ thuật sau đối chiếu ảnh. Chưa có xác nhận owner. Không phải GT giảng viên; scoring policy không đổi sau khi xem eval.'),
         '', '| Image | Pipeline | Đề nghị | Quan sát |','|---|---|---|---|']
     lines += [f"| {r['item_id']} | {r['pipeline_action']} | {r['proposed_action']} | {r['observation']} |" for r in rows]
     Path('reports/visual_review.md').write_text('\n'.join(lines)+'\n')

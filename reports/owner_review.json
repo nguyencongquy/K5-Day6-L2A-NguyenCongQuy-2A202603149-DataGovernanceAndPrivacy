@@ -1,0 +1,11 @@
+{
+  "owner": "NguyenCongQuy",
+  "confirmed": true,
+  "confirmation_source": "Explicit user reply in conversation after viewing 20-image recommendations",
+  "confirmed_at": "2026-11-14T08:23:12+00:00",
+  "confirmation_text": "Đã xem, xác nhận 10 RECAPTURE / 2 KEEP / 8 ESCALATE",
+  "recapture": 10,
+  "keep": 2,
+  "escalate": 8,
+  "not_authorized": "No automatic resolution of escalated cases"
+}
