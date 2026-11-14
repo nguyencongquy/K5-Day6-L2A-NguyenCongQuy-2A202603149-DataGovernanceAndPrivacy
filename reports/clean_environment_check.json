@@ -1,8 +1,12 @@
 {
-  "fresh_output_runs": "PASS: tests invoke pipeline in independent temporary output directories",
-  "isolated_dependency_install": "NOT_COMPLETED",
-  "reason": "Separate empty venv install was stopped during slow SciPy wheel download. No isolated-environment pass is claimed.",
-  "working_environment_tests": "55 passed, 39 GT-dependent skipped",
-  "system_site_packages": true,
-  "reproduce": "python3 -m venv .venv; .venv/bin/python -m pip install -r requirements-lock.txt; sh tools/reproduce_t02.sh"
+  "isolated_dependency_install": "PASS",
+  "system_site_packages": false,
+  "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:11:29) [Clang 20.1.8 ]",
+  "prefix": "/tmp/day06-clean-review",
+  "libjpeg": "6.2",
+  "tests": "56 passed, 39 skipped in 3.91s",
+  "fresh_output_run": "PASS",
+  "predictions_match_canonical_environment_exactly": true,
+  "n_predictions": 96,
+  "historical_conda_drift_recorded": "reports/environment_drift.json"
 }

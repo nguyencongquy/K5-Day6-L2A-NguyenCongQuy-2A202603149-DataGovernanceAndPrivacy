@@ -1,0 +1,28 @@
+{
+  "scope": "controlled transforms only",
+  "n": 60,
+  "scenes": 12,
+  "budget": 20,
+  "defects": 48,
+  "bootstrap_scene_recall_ci95": [
+    0.4166666666666667,
+    0.4166666666666667
+  ],
+  "runs": {
+    "baseline": {
+      "Defect Recall@B": 0.4166666666666667,
+      "Precision@B": 1.0,
+      "Defect-type accuracy (GT defects)": 0.25
+    },
+    "poc": {
+      "Defect Recall@B": 0.4166666666666667,
+      "Precision@B": 1.0,
+      "Defect-type accuracy (GT defects)": 0.5208333333333334
+    },
+    "ablation_no_glare": {
+      "Defect Recall@B": 0.4166666666666667,
+      "Precision@B": 1.0,
+      "Defect-type accuracy (GT defects)": 0.2708333333333333
+    }
+  }
+}

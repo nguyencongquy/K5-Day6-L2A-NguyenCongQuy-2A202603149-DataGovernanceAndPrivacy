@@ -1,0 +1,10 @@
+split,camera_id,light,n,mean_score,recapture_count
+dev,cam_A,day,24,0.1819922465340358,3
+dev,cam_A,dusk,12,0.17869313609915663,1
+dev,cam_B,day,12,0.3007432119727158,3
+dev,cam_B,dusk,4,0.11494663854440047,0
+dev,cam_B,night,4,0.25195513697664795,1
+eval,cam_A,day,20,0.3020869087163484,6
+eval,cam_A,night,8,0.31228425959341527,2
+eval,cam_B,dusk,4,0.469977529729896,2
+eval,cam_B,night,8,0.07490320627888039,0

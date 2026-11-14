@@ -1,3 +1,15 @@
+# Evidence hiện tại — T02
+
+`metrics_baseline.json`, `metrics_poc.json` và bảng so sánh hiện dùng bộ controlled-transform nội bộ 60 mẫu, không phải hidden GT fixture. Tái lập bằng `make reproduce`; phạm vi, seed và source nằm trong JSON và group_report.md.
+
+- `ood_results.csv`: 10 ảnh stress synthetic mới; input/reference đã commit trước đo.
+- `required_failure_cases.md`: đủ ba tình huống bắt buộc, kèm ảnh dev và phép đo.
+- `owner_review.json` + `review_queue_reviewed.csv`: xác nhận thực tế 20 quyết định; 8 ESCALATE tiếp tục HOLD.
+- `clean_environment_check.json` + `fresh_checkout_check.json`: venv độc lập và checkout mới đã kiểm chứng.
+- Official evaluation do giảng viên có overlay GT chạy. Khi có, lưu kết quả riêng để không lẫn với benchmark nội bộ.
+
+---
+
 # reports/
 
 | File | Ai tạo | Cách tạo |

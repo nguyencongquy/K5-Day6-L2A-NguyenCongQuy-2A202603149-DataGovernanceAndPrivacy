@@ -1,0 +1,2 @@
+[main] track=t02 (Raw QC Triage) input=fixtures/t02_raw_qc output=/tmp/day06-clean-output-final seed=42 offline=True pipeline=src.pipeline
+[main] status=0 runtime=0.2206s -> /tmp/day06-clean-output-final/run_info.json

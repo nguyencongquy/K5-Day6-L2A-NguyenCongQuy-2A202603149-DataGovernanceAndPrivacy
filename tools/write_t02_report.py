@@ -48,7 +48,7 @@ GO chỉ xác nhận kết quả triage đã được review đầy đủ, khôn
 
 ## 03 · Thiết kế và policy đóng băng
 
-Baseline: score=max(0,1−Laplacian variance/80), một ngưỡng toàn ảnh, dùng hàm chung của lab. PoC lấy max của bốn tín hiệu trong [0,1]: sharpness chuẩn hóa tương phản (Laplacian/max(gray variance,100), ngưỡng 0.04); brightness thiếu sáng dưới 18; saturated fraction >0.65 trên tile ROI 16×16; chênh độ nhảy tại biên khối JPEG 8 pixel chuẩn hóa bằng 12. Score≥0.5 gợi ý RECAPTURE.
+Baseline: score=max(0,1−Laplacian variance/80), một ngưỡng toàn ảnh, dùng hàm chung của lab. Tham số 80 là mốc score về 0; cutoff hành động score≥0.5 tương đương Laplacian≤40. PoC lấy max của bốn tín hiệu trong [0,1]: sharpness chuẩn hóa tương phản (Laplacian/max(gray variance,100), ngưỡng 0.04); brightness thiếu sáng dưới 18; saturated fraction >0.65 trên tile ROI 16×16; chênh độ nhảy tại biên khối JPEG 8 pixel chuẩn hóa bằng 12. Score≥0.5 gợi ý RECAPTURE.
 
 Ngưỡng là heuristic cố định; không tuyên bố được tối ưu trên dev labels. Không tune bằng nhãn eval. Sau review eval ở phiên trước, giữ nguyên feature/threshold; chỉ bổ sung kiểm chứng và sửa an toàn review. `scoring_freeze_check.json` so hàm scoring với commit đóng băng. Cam_B sensitivity chỉ dùng dev và không cập nhật policy sau sweep. ROI glare đáp ứng nhánh ROI ở yêu cầu +24h; phân tích dưới đây cho thấy hạn chế của ROI này.
 

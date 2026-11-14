@@ -1,5 +1,5 @@
-...s....s...s............................ssssssssssssss................. [ 76%]
-ssssssssssssssssssssss                                                   [100%]
+...s....s...s............................ssssssssssssss................. [ 75%]
+.ssssssssssssssssssssss                                                  [100%]
 =========================== short test summary info ============================
 SKIPPED [1] tests/test_cli.py:46: ground truth not distributed (instructor overlay not installed)
 SKIPPED [1] tests/test_cli.py:88: ground truth not distributed (instructor overlay not installed)
@@ -7,4 +7,4 @@ SKIPPED [1] tests/test_common.py:44: ground truth not distributed (instructor ov
 SKIPPED [14] tests/test_fixtures.py:28: ground truth not distributed (instructor overlay not installed)
 SKIPPED [14] tests/test_track_evaluators.py:76: ground truth not distributed (instructor overlay not installed)
 SKIPPED [8] tests/test_track_evaluators.py: ground truth not distributed (instructor overlay not installed)
-55 passed, 39 skipped in 5.01s
+56 passed, 39 skipped in 3.77s

@@ -1,10 +1,15 @@
 {
-  "git_sha": "cf30d35",
+  "processing_commit": "5b9b38d",
+  "evidence_source_commit": "c80496a",
+  "libjpeg": "6.2",
   "sha256": {
-    "src/pipeline.py": "e0e3a89599d3594c1d9f1048e3874d96c537f487dc229cada03081d1cb30b97b",
+    "src/pipeline.py": "3e64e9e7de095e45d2ebb059dcf512a88cd3a48c34cdf21ad00706d7dcf3257f",
     "configs/lab.yaml": "155bf16f16f9ba0d7365d7aff8709235020ad3d167a98dbc9dc2d30ff8ad86bf",
     "configs/baseline.yaml": "7ce66768d347689f80244e6aedbe0936b2bd140d3fc9283221664b7aa66b41cd",
-    "requirements-lock.txt": "2440e88a1b7cc086aac26817ed99134159640acda848a21ccbef7067c0667cce",
-    "tools/evaluate_internal_t02.py": "6fc58b26b3548796b5e2217dba2f3fc200e99d71391a81afa07190d638b8109e"
-  }
+    "requirements-lock.txt": "e68983a05c7767a1425cc46bae3fcdc3b5589b33be118de60b090b8830b2203d",
+    "tools/evaluate_internal_t02.py": "6fc58b26b3548796b5e2217dba2f3fc200e99d71391a81afa07190d638b8109e",
+    "tools/analyze_t02_requirements.py": "e9f71d74630dc7c29e1125f418e3f40a0722920d19dcc3b64ee89ac618260d4a",
+    "data/ood_synthetic/manifest.csv": "9ee99080e857a398783e941125cc0222c45d67faad02ee9e759b7e0260be5c79"
+  },
+  "ood_manifest_verified": true
 }

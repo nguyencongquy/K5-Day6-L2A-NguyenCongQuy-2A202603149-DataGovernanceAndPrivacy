@@ -1,6 +1,6 @@
 # T02 — đối chiếu trực quan 20 ảnh
 
-Khuyến nghị kỹ thuật sau đối chiếu ảnh. Không phải GT giảng viên, không thay chữ ký reviewer của học viên. Không đổi scoring policy sau khi xem eval.
+Chủ sở hữu đã xác nhận 10 RECAPTURE, 2 KEEP, 8 ESCALATE; xem owner_review.json và CSV đã review. Tám ca ESCALATE tiếp tục HOLD. Không phải GT giảng viên; scoring policy không đổi sau khi xem eval.
 
 | Image | Pipeline | Đề nghị | Quan sát |
 |---|---|---|---|
@@ -24,9 +24,3 @@ Khuyến nghị kỹ thuật sau đối chiếu ảnh. Không phải GT giảng 
 | img_05_0 | KEEP | KEEP | Cạnh mục tiêu nhìn rõ trong đối chiếu; không thấy suy giảm lớn ở kích thước gốc. |
 | img_15_0 | KEEP | KEEP | Cảnh dusk nhưng người và xe còn thấy rõ; không nên loại chỉ theo ánh sáng. |
 | img_16_3 | KEEP | ESCALATE | KEEP cần xem lại: artifact nén ở nhà, xe và rìa vật thể; ảnh phóng to xác nhận cấu trúc block/ringing. |
-
-## Hai ví dụ KEEP cần xem lại
-
-![img_05_2: artifact nén](examples/img_05_2.jpg)
-
-![img_13_2: artifact trên ảnh đêm](examples/img_13_2.jpg)

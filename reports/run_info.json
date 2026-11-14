@@ -7,13 +7,14 @@
   "input": "fixtures/t02_raw_qc",
   "output": "out/poc",
   "pipeline": "src.pipeline",
-  "config_hash": "a8b2b4b422d0",
-  "git_sha": "cf30d35",
-  "runtime_seconds": 0.2068,
+  "config_hash": "2fc27a96558b",
+  "git_sha": "5b9b38d",
+  "runtime_seconds": 0.1683,
   "stats": {
     "n_items": 96,
     "n_eval": 40,
-    "n_reviewed": 0,
+    "n_reviewed": 20,
+    "n_escalated": 8,
     "budget": 20
   },
   "machine": {

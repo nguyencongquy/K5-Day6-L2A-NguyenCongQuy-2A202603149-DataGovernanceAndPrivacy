@@ -1,2 +1,2 @@
 member,git_author_name,git_email,role,modules_files,commit_shas,evidence_note,presenter
-NguyenCongQuy,NguyenCongQuy,26ai.quync@vinuni.edu.vn,"Solo: integration, algorithm, QA, report",src/pipeline.py;tools/evaluate_internal_t02.py;tests/test_t02_submission.py,cf30d35,Substantive implementation commit; see git show and tests,pending
+NguyenCongQuy,NguyenCongQuy,26ai.quync@vinuni.edu.vn,"Solo: integration, algorithm, QA, review decisions, report",src/pipeline.py;tests/test_t02_submission.py;tools/;reports/,c80496a,See substantive commits and measured evidence; classroom presentation not claimed,not recorded

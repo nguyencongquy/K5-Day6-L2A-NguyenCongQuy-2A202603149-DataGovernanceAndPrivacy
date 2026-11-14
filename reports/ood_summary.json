@@ -1,0 +1,10 @@
+{
+  "scope": "10 independent synthetic domain stress cases; reference actions are predeclared engineering expectations, NOT human gold",
+  "n": 10,
+  "agreement_count": 9,
+  "agreement": 0.9,
+  "false_keep_vs_reference": 1,
+  "false_recapture_vs_reference": 0,
+  "no_threshold_tuning_after_measurement": true,
+  "ranking_metric_not_reported": "B=20 would include all N=10 and be uninformative"
+}

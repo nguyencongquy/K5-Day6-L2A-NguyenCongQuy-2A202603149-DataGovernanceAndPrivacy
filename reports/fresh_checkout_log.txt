@@ -1,0 +1,53 @@
+[main] track=t02 (Raw QC Triage) input=fixtures/t02_raw_qc output=out/baseline seed=42 offline=True pipeline=src.pipeline
+[main] status=0 runtime=0.2s -> out/baseline/run_info.json
+[main] track=t02 (Raw QC Triage) input=fixtures/t02_raw_qc output=out/poc seed=42 offline=True pipeline=src.pipeline
+[main] status=0 runtime=0.1798s -> out/poc/run_info.json
+[main] track=t02 (Raw QC Triage) input=fixtures/t02_raw_qc output=out/poc seed=42 offline=True pipeline=src.pipeline
+[main] status=0 runtime=0.1858s -> out/poc/run_info.json
+[main] track=t02 (Raw QC Triage) input=data/ood_synthetic output=out/ood seed=42 offline=True pipeline=src.pipeline
+[main] status=0 runtime=0.0815s -> out/ood/run_info.json
+{
+  "baseline": {
+    "Defect Recall@B": 0.4166666666666667,
+    "Precision@B": 1.0,
+    "Defect-type accuracy (GT defects)": 0.25
+  },
+  "poc": {
+    "Defect Recall@B": 0.4166666666666667,
+    "Precision@B": 1.0,
+    "Defect-type accuracy (GT defects)": 0.5208333333333334
+  },
+  "ablation_no_glare": {
+    "Defect Recall@B": 0.4166666666666667,
+    "Precision@B": 1.0,
+    "Defect-type accuracy (GT defects)": 0.2708333333333333
+  }
+}
+{
+  "scope": "10 independent synthetic domain stress cases; reference actions are predeclared engineering expectations, NOT human gold",
+  "n": 10,
+  "agreement_count": 9,
+  "agreement": 0.9,
+  "false_keep_vs_reference": 1,
+  "false_recapture_vs_reference": 0,
+  "no_threshold_tuning_after_measurement": true,
+  "ranking_metric_not_reported": "B=20 would include all N=10 and be uninformative"
+}
+  source split  radius   laplacian  baseline_score  poc_score baseline_action poc_action
+img_00_1   dev     0.0 1365.639404        0.000000   0.000000            KEEP       KEEP
+img_00_1   dev     0.5  515.215576        0.000000   0.000000            KEEP       KEEP
+img_00_1   dev     1.0   49.764732        0.377941   0.183152            KEEP       KEEP
+img_00_1   dev     1.5   11.378572        0.857768   0.804272       RECAPTURE  RECAPTURE
+Report refreshed from actual evidence; owner confirmed: True
+{'RECAPTURE': 10, 'ESCALATE': 8, 'KEEP': 2}
+...s....s...s............................ssssssssssssss................. [ 75%]
+.ssssssssssssssssssssss                                                  [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_cli.py:46: ground truth not distributed (instructor overlay not installed)
+SKIPPED [1] tests/test_cli.py:88: ground truth not distributed (instructor overlay not installed)
+SKIPPED [1] tests/test_common.py:44: ground truth not distributed (instructor overlay not installed)
+SKIPPED [14] tests/test_fixtures.py:28: ground truth not distributed (instructor overlay not installed)
+SKIPPED [14] tests/test_track_evaluators.py:76: ground truth not distributed (instructor overlay not installed)
+SKIPPED [8] tests/test_track_evaluators.py: ground truth not distributed (instructor overlay not installed)
+56 passed, 39 skipped in 4.14s
+

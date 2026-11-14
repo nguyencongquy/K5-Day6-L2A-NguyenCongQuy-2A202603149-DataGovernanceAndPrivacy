@@ -1,0 +1,16 @@
+{
+  "fresh_git_checkout": true,
+  "no_initial_out": true,
+  "no_system_site_packages": true,
+  "independent_venv": "/tmp/day06-clean-review",
+  "command": "TASK_PY=/tmp/day06-clean-review/bin/python sh tools/reproduce_t02.sh",
+  "status": "PASS",
+  "source_commit": "c80496a307b00e17f3f282f3af8f77e3a74bc570",
+  "n_predictions": 96,
+  "n_reviewed": 20,
+  "n_escalated": 8,
+  "decision": "HOLD",
+  "reason_code": "REVIEW_ESCALATED",
+  "raw_and_reviewed_predictions_exact_match": true,
+  "tests": "56 passed, 39 skipped in 4.14s"
+}

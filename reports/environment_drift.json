@@ -1,0 +1,7 @@
+{
+  "max_score_difference": 0.022321428571428603,
+  "action_changes": 0,
+  "rank_identical": false,
+  "canonical_environment": "isolated PyPI wheel installation",
+  "clean_pillow_jpeg": "6.2"
+}
