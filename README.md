@@ -1,8 +1,20 @@
 # Bài làm cá nhân — T02 Raw QC Triage
 
-Nguyễn Công Quý · 2A202603149. [Báo cáo](reports/group_report.md) · [Metric contract](reports/metric_contract.md) · [Review 20 ảnh](reports/contact_sheet.html) · [Kết quả tests](reports/test_results.txt) · [Đối chiếu trực quan](reports/visual_review.md) · [Audit theo rubric](reports/submission_audit.md).
+Nguyễn Công Quý · 2A202603149. Chọn **một challenge T02** trong 14 lựa chọn theo đề.
 
-Chạy: `make setup` rồi `sh tools/reproduce_t02.sh`. Để cài đúng phiên bản đã đo: `.venv/bin/python -m pip install -r requirements-lock.txt`. Metric hiện có là benchmark controlled-corruption riêng, không phải hidden GT fixture. Trạng thái HOLD, chờ review chủ sở hữu. Bản README gốc bên dưới giữ nguyên để đối chiếu yêu cầu.
+- [Báo cáo](reports/group_report.md) · [Metric contract](reports/metric_contract.md) · [Đối chiếu yêu cầu](reports/submission_audit.md)
+- [Review 20 ảnh](reports/contact_sheet.html) · [Khuyến nghị từng ảnh](reports/visual_review.md)
+- [Ba failure mode bắt buộc](reports/required_failure_cases.md) · [10 ảnh stress OOD](reports/ood_contact_sheet.html)
+- [Tests](reports/test_results.txt) · [Môi trường sạch](reports/clean_environment_check.json) · [Demo 5 slide](demo/output/Day06_T02_NguyenCongQuy.pptx)
+
+```bash
+make setup
+make reproduce
+```
+
+Setup cần mạng để cài dependency; pipeline/demo chạy offline. Chỉ triển khai T02; các ví dụ track khác trong đề gốc bên dưới không phải phần bài làm này. File HTML trên GitHub cần tải xuống rồi mở bằng trình duyệt.
+
+Metrics hiện có là benchmark controlled-transform riêng; GT ẩn fixture do giảng viên chấm. Bộ 10 OOD là synthetic shifted-domain stress, không phải ảnh BDD thật. Trạng thái human review và HOLD/GO được ghi trong báo cáo; không giả chữ ký hoặc điểm showcase/debate.
 
 ---
 

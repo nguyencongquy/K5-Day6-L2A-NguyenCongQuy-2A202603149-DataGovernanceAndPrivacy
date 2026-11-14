@@ -10,7 +10,7 @@ help:
 	@echo "make setup | preflight | test | verify | baseline TRACK=t02 | run TRACK=t02 | eval-baseline | eval-poc | compare"
 
 setup:
-	python3 -m venv .venv && $(PY) -m pip install -q --upgrade pip && $(PY) -m pip install -q -r requirements.txt
+	python3 -m venv .venv && $(PY) -m pip install -q --upgrade pip && $(PY) -m pip install -q -r requirements-lock.txt
 
 preflight:
 	$(PY) -m tools.preflight
@@ -48,3 +48,11 @@ tag-demo:
 
 tag-final:
 	git tag -a final-24h -m "Final submission"
+
+.PHONY: reproduce ood
+reproduce:
+	sh tools/reproduce_t02.sh
+
+ood:
+	$(PY) -m src.main --input data/ood_synthetic --output out/ood --offline --seed 42
+	$(PY) -m tools.analyze_t02_requirements

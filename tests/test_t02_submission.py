@@ -82,3 +82,16 @@ def test_failed_rerun_invalidates_previous_go(tmp_path):
     q.to_csv(tmp_path/'review_queue_reviewed.csv',index=False)
     assert main.main(['--offline','--output',str(tmp_path)])==2
     assert json.loads((tmp_path/'decision.json').read_text())['status']=='HOLD'
+
+
+def test_ood_pack_does_not_read_reference_labels(tmp_path,monkeypatch):
+    import pandas as pd
+    original=pd.read_csv
+    def guarded(path,*args,**kwargs):
+        assert not str(path).endswith('reference_actions.csv'), 'pipeline must not read OOD reference labels'
+        return original(path,*args,**kwargs)
+    monkeypatch.setattr(pd,'read_csv',guarded)
+    assert main.main(['--offline','--input','data/ood_synthetic','--output',str(tmp_path)])==0
+    pred=original(tmp_path/'ranked_review.csv')
+    assert len(pred)==10 and 'reference_action' not in pred.columns
+    assert json.loads((tmp_path/'decision.json').read_text())['status']=='HOLD'
