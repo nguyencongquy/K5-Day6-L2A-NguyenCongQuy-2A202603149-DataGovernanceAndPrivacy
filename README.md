@@ -1,3 +1,11 @@
+# Bài làm cá nhân — T02 Raw QC Triage
+
+Nguyễn Công Quý · 2A202603149. [Báo cáo](reports/group_report.md) · [Metric contract](reports/metric_contract.md) · [Review 20 ảnh](reports/contact_sheet.html) · [Kết quả tests](reports/test_results.txt) · [Đối chiếu trực quan](reports/visual_review.md) · [Audit theo rubric](reports/submission_audit.md).
+
+Chạy: `make setup` rồi `sh tools/reproduce_t02.sh`. Để cài đúng phiên bản đã đo: `.venv/bin/python -m pip install -r requirements-lock.txt`. Metric hiện có là benchmark controlled-corruption riêng, không phải hidden GT fixture. Trạng thái HOLD, chờ review chủ sở hữu. Bản README gốc bên dưới giữ nguyên để đối chiếu yêu cầu.
+
+---
+
 # Day 06 · Data Lab · Field-to-Release PoC (AI20K · Data Track)
 
 Starter repo cho bài lab **Data Pipeline, Privacy & Production PoC**: 14 challenge (T01–T14), một contract chung.

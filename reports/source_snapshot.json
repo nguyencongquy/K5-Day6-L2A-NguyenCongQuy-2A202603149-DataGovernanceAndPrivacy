@@ -1,0 +1,10 @@
+{
+  "git_sha": "cf30d35",
+  "sha256": {
+    "src/pipeline.py": "e0e3a89599d3594c1d9f1048e3874d96c537f487dc229cada03081d1cb30b97b",
+    "configs/lab.yaml": "155bf16f16f9ba0d7365d7aff8709235020ad3d167a98dbc9dc2d30ff8ad86bf",
+    "configs/baseline.yaml": "7ce66768d347689f80244e6aedbe0936b2bd140d3fc9283221664b7aa66b41cd",
+    "requirements-lock.txt": "2440e88a1b7cc086aac26817ed99134159640acda848a21ccbef7067c0667cce",
+    "tools/evaluate_internal_t02.py": "6fc58b26b3548796b5e2217dba2f3fc200e99d71391a81afa07190d638b8109e"
+  }
+}

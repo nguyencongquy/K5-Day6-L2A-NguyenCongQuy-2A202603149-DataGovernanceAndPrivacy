@@ -1,24 +1,16 @@
-# Metric contract (khai báo bắt buộc — chốt ở phút 30, trước khi chạy eval)
+# Metric contract — T02 (policy cố định)
 
-> Các metric chuẩn đã được cài trong `src/metrics/tracks.py`. File này là nơi nhóm **cam kết** cách dùng chúng.
-> Không đổi testset, threshold hay trọng số sau khi đã thấy kết quả eval.
-
-| Mục | Khai báo của nhóm |
-|---|---|
-| Track | T__ |
-| Primary metric (tên đúng như evaluator in ra) | |
-| Tăng tốt hay giảm tốt? | higher / lower |
-| Đơn vị đánh giá (image / region / pair / release / batch / case …) | |
-| Công thức + numerator / denominator | |
-| Cách ghép prediction ↔ GT (IoU? id? tolerance?) | |
-| Candidate pool cố định | |
-| Review budget B / K | |
-| Seed | 42 |
-| Threshold policy (chọn trên dev như thế nào) | |
-| Eval split (không dùng để tune) | |
-| Chỉ số lỗi xấu (miss / false alarm / false reject) | |
-| Slices sẽ báo cáo (≥2) | |
-| Cách báo độ bất định khi N nhỏ (Wilson CI / bootstrap) | |
-| Ngày giờ chốt + người chốt | |
-
-Nếu baseline = 0 thì ghi rõ "baseline = 0" thay vì phần trăm cải thiện.
+- Chủ sở hữu: NguyenCongQuy; làm cá nhân, mã nội bộ SOLO-2A202603149.
+- Primary: Defect Recall@B; higher better; đơn vị image; B=20.
+- Numerator: số ảnh lỗi trong top-20; denominator: tổng ảnh lỗi trên pool eval.
+- Secondary: Precision@B; defect-type accuracy; false alarm theo light; runtime/100 ảnh.
+- Matching: image_id; output đủ mọi ID, không đổi split/pool.
+- Fixture: 96 input, eval 40; GT ẩn chưa có, không tune trên eval labels.
+- Benchmark riêng: 60 controlled transforms/12 scene, 48 positive; không phải fixture GT.
+- Baseline: global Laplacian threshold 80; PoC max bốn feature, ngưỡng trong src/pipeline.py.
+- Các ngưỡng là giả định heuristic, không tuyên bố calibrate bằng dev labels.
+- Freeze: policy được viết trước lần benchmark đầu; sau lỗi unit test, sửa denominator sharpness trước benchmark, không tune sau kết quả.
+- Seed chạy 42; generator internal 20261114; scene bootstrap 500 lượt, seed 42.
+- Slices: defect type và light; controlled benchmark chỉ có light=controlled, chưa đủ hard slices ảnh thật.
+- Gate: HOLD tới khi toàn queue có reviewer và quyết định kết thúc hợp lệ.
+- Không thay đổi metric/evaluator, không diễn giải primary hòa là cải tiến.

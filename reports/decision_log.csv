@@ -1,0 +1,6 @@
+ts,scope,status,canonical,reason_code,reason,owner,evidence
+2026-11-14T07:23:54+00:00,t02-triage-output,HOLD,HOLD,HUMAN_REVIEW_REQUIRED,Release triage results only after the whole queue is reviewed; GO does not certify privacy compliance.,NguyenCongQuy,ranked_review.csv;review_queue.csv;audit_log.jsonl
+2026-11-14T07:25:16+00:00,t02-triage-output,HOLD,HOLD,HUMAN_REVIEW_REQUIRED,Release triage results only after the whole queue is reviewed; GO does not certify privacy compliance.,NguyenCongQuy,ranked_review.csv;review_queue.csv;audit_log.jsonl
+2026-11-14T07:41:19+00:00,t02-triage-output,HOLD,HOLD,HUMAN_REVIEW_REQUIRED,Release triage results only after the whole queue is reviewed; GO does not certify privacy compliance.,NguyenCongQuy,ranked_review.csv;review_queue.csv;audit_log.jsonl
+2026-11-14T07:43:20+00:00,t02-triage-output,HOLD,HOLD,RUN_IN_PROGRESS,Current run has not completed validation and review.,NguyenCongQuy,
+2026-11-14T07:43:20+00:00,t02-triage-output,HOLD,HOLD,HUMAN_REVIEW_REQUIRED,Release triage results only after the whole queue is reviewed; GO does not certify privacy compliance.,NguyenCongQuy,ranked_review.csv;review_queue.csv;audit_log.jsonl

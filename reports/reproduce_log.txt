@@ -1,0 +1,77 @@
+[OK  ] Python 3.13.9 (lab target 3.11)
+[OK  ] import numpy 2.3.5
+[OK  ] import pandas 2.3.3
+[OK  ] import PIL 12.0.0
+[OK  ] import cv2 5.0.0
+[OK  ] import sklearn 1.9.0
+[OK  ] import scipy 1.16.3
+[OK  ] import matplotlib 3.10.6
+[OK  ] import yaml 6.0.3
+[OK  ] import pytest 8.4.2
+[OK  ] t01 fixtures/t01_coverage (hashes match)
+[OK  ] t02 fixtures/t02_raw_qc (hashes match)
+[OK  ] t03 fixtures/t03_synthetic (hashes match)
+[OK  ] t04 fixtures/t04_sensor_sync (hashes match)
+[OK  ] t05 fixtures/t05_near_duplicate (hashes match)
+[OK  ] t06 fixtures/t06_release_gate (hashes match)
+[OK  ] t07 fixtures/t07_redaction (hashes match)
+[OK  ] t08 fixtures/t08_deletion (hashes match)
+[OK  ] t09 fixtures/t09_privacy_gate (hashes match)
+[OK  ] t10 fixtures/t10_domain_shift (hashes match)
+[OK  ] t11 fixtures/t11_label_errors (hashes match)
+[OK  ] t12 fixtures/t12_vendor_batches (hashes match)
+[OK  ] t13 fixtures/t13_rare_mining (hashes match)
+[OK  ] t14 fixtures/t14_auto_annotation (hashes match)
+[OK  ] offline guard blocks outbound network
+[WARN] data/real not present (optional; instructor runs tools/download_real_samples.py before class)
+[WARN] models_optional/ not present (only for pretrained T07/T14 models)
+[OK  ] no HF token in tracked files
+[OK  ] .env not tracked by git
+
+preflight: 0 FAIL, 2 WARN
+OK   fixtures/t01_coverage/manifest.csv
+OK   fixtures/t02_raw_qc/manifest.csv
+OK   fixtures/t03_synthetic/manifest.csv
+OK   fixtures/t04_sensor_sync/manifest.csv
+OK   fixtures/t05_near_duplicate/manifest.csv
+OK   fixtures/t06_release_gate/manifest.csv
+OK   fixtures/t07_redaction/manifest.csv
+OK   fixtures/t08_deletion/manifest.csv
+OK   fixtures/t09_privacy_gate/manifest.csv
+OK   fixtures/t10_domain_shift/manifest.csv
+OK   fixtures/t11_label_errors/manifest.csv
+OK   fixtures/t12_vendor_batches/manifest.csv
+OK   fixtures/t13_rare_mining/manifest.csv
+OK   fixtures/t14_auto_annotation/manifest.csv
+14 manifests, 0 failing
+[main] track=t02 (Raw QC Triage) input=fixtures/t02_raw_qc output=out/baseline seed=42 offline=True pipeline=src.pipeline
+[main] status=0 runtime=0.2029s -> out/baseline/run_info.json
+[main] track=t02 (Raw QC Triage) input=fixtures/t02_raw_qc output=out/poc seed=42 offline=True pipeline=src.pipeline
+[main] status=0 runtime=0.2068s -> out/poc/run_info.json
+{
+  "baseline": {
+    "Defect Recall@B": 0.4166666666666667,
+    "Precision@B": 1.0,
+    "Defect-type accuracy (GT defects)": 0.25
+  },
+  "poc": {
+    "Defect Recall@B": 0.4166666666666667,
+    "Precision@B": 1.0,
+    "Defect-type accuracy (GT defects)": 0.5208333333333334
+  },
+  "ablation_no_glare": {
+    "Defect Recall@B": 0.4166666666666667,
+    "Precision@B": 1.0,
+    "Defect-type accuracy (GT defects)": 0.2708333333333333
+  }
+}
+...s....s...s............................ssssssssssssss................. [ 76%]
+ssssssssssssssssssssss                                                   [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_cli.py:46: ground truth not distributed (instructor overlay not installed)
+SKIPPED [1] tests/test_cli.py:88: ground truth not distributed (instructor overlay not installed)
+SKIPPED [1] tests/test_common.py:44: ground truth not distributed (instructor overlay not installed)
+SKIPPED [14] tests/test_fixtures.py:28: ground truth not distributed (instructor overlay not installed)
+SKIPPED [14] tests/test_track_evaluators.py:76: ground truth not distributed (instructor overlay not installed)
+SKIPPED [8] tests/test_track_evaluators.py: ground truth not distributed (instructor overlay not installed)
+55 passed, 39 skipped in 4.91s

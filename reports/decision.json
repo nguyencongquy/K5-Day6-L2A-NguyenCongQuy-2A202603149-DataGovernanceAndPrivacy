@@ -1,0 +1,15 @@
+{
+  "status": "HOLD",
+  "reason_code": "HUMAN_REVIEW_REQUIRED",
+  "reason": "Release triage results only after the whole queue is reviewed; GO does not certify privacy compliance.",
+  "owner": "NguyenCongQuy",
+  "scope": "t02-triage-output",
+  "evidence": [
+    "ranked_review.csv",
+    "review_queue.csv",
+    "audit_log.jsonl"
+  ],
+  "metrics": {},
+  "ts": "2026-11-14T07:43:20+00:00",
+  "canonical": "HOLD"
+}

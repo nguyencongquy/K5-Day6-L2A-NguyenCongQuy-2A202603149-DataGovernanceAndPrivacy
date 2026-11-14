@@ -1,0 +1,2 @@
+ground truth file not found: /Users/bim/Documents/K5-Day6-L2A-NguyenCongQuy-2A202603149-DataGovernanceAndPrivacy/fixtures/t02_raw_qc/gt/labels.csv
+Ground truth is not distributed in the student repo; the instructor runs official evaluation (docs/INSTRUCTOR_SETUP.md).

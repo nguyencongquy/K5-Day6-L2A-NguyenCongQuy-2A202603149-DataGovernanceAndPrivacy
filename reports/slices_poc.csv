@@ -1,0 +1,6 @@
+slice,n,recall_in_topB,false_alarm_in_topB
+light=controlled,60,0.4166666666666667,0.0
+defect=blur,12,0.6666666666666666,
+defect=compression,12,0.0,
+defect=dark,12,0.0,
+defect=glare,12,1.0,
